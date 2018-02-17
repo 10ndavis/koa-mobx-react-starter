@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
 @inject("UserStore") @observer
-export default class UserProfile extends Component {
+export default class Binders extends Component {
 
   constructor(props) {
     super(props);
@@ -13,7 +13,7 @@ export default class UserProfile extends Component {
     // as adding .bind(this) to the end of a function. We need to bind
     // our function to make sure that it runs in the context of the
     // UserStore
-    this._getUserInfo = ::this.props.UserStore.getUserInfo;
+
   }
 
   render() {
@@ -21,13 +21,12 @@ export default class UserProfile extends Component {
 
     return (
       <div>
-        User Profile
-        <button onClick={()=>{ console.log('clicked'); this._getUserInfo(); }}>Get Token</button>
+        Binders Page
       </div>
     );
   }
 }
 
-UserProfile.wrappedComponent.propTypes = {
+Binders.wrappedComponent.propTypes = {
   UserStore: PropTypes.object.isRequired,
 };

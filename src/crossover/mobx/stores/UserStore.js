@@ -1,6 +1,5 @@
 import { observable, action, runInAction } from 'mobx';
-
-import { getRandomUser } from '../../api/userApi';
+import axios from 'axios';
 
 export default class UserStore {
 
@@ -18,15 +17,29 @@ export default class UserStore {
     this.userProfile = userData;
   }
 
+  @action login() {
+    console.log("axios called");
+    axios.post('http://10.163.171.179:5000/auth', {
+      username: 'ndavis',
+      password: '1234'
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   @action
-  async getNewRandomUser() {
+  async getUserInfo() {
     if (!this.loadingUser) {
       this.loadingUser = true;
 
       let newUser = null;
 
       try {
-        newUser = await getRandomUser();
+        newUser = await this.login();
 
         // We call another of our actions, because technically
         // what happens after "await" is a separate function in a
