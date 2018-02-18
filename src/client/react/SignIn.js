@@ -11,9 +11,8 @@ class SignIn extends Component {
   render() {
     return (
       <div className='SignIn'>
-        Sign In page
-
         <div className='SignIn__box'>
+          <div className='SignIn__box-header'>Login</div>
           <FloatingLabel
             id='username'
             name='Username'
